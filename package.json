@@ -1,0 +1,68 @@
+{
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@8.15.6+sha256.01c01eeb990e379b31ef19c03e9d06a14afa5250b82e81303f88721c99ff2e6f",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "generate:api": "npx swagger-typescript-api -p ./swagger.yml -o __generated__/api -n client.ts -r --axios --patch",
+    "postinstall": "nuxi prepare",
+    "start": "node .output/server/index.mjs",
+    "start:generate": "npx serve .output/public",
+    "lint": "eslint .",
+    "stylelint": "stylelint \"**/*.{vue,scss}\"",
+    "typecheck": "vue-tsc --noEmit",
+    "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "@antfu/utils": "^0.7.7",
+    "@tinymce/tinymce-vue": "^5.1.1",
+    "@vee-validate/nuxt": "^4.12.4",
+    "@vee-validate/zod": "^4.12.5",
+    "maska": "^2.1.11",
+    "primevue": "3.46.0",
+    "std-env": "^3.6.0",
+    "tinymce": "^7.0.0",
+    "tinymce-i18n": "^24.3.11",
+    "vue-draggable-plus": "^0.3.5",
+    "zod": "^3.22.4",
+    "@pinia/nuxt": "^0.5.1",
+    "@vueuse/nuxt": "^10.7.0",
+    "nuxt": "^3.8.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.4.4",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "eslint": "npm:eslint-ts-patch@^8.55.0-1",
+    "eslint-plugin-format": "^0.1.0",
+    "eslint-ts-patch": "^8.55.0-1",
+    "lint-staged": "^15.2.0",
+    "nuxt-primevue": "^0.2.2",
+    "nuxt-svgo": "^4.0.0",
+    "pinia": "^2.1.7",
+    "postcss-html": "^1.7.0",
+    "postcss-scss": "^4.0.9",
+    "sass": "^1.69.7",
+    "simple-git-hooks": "^2.9.0",
+    "stylelint": "^16.9.0",
+    "stylelint-config-clean-order": "^6.1.0",
+    "stylelint-config-recommended-scss": "^14.1.0",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-config-standard-vue": "^1.0.0",
+    "stylelint-config-two-dash-bem": "^1.0.0",
+    "typescript": "^5.3.3",
+    "vue-tsc": "^1.8.25"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint",
+    "pre-push": "pnpm typecheck && pnpm --no -- commitlint --edit"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}

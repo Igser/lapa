@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - API_BASE_URL=${API_BASE_URL}
+      - NODE_ENV=${NODE_ENV}
+    volumes:
+      - .:/app
